@@ -8,6 +8,7 @@ import FeaturesSection from "@/components/sections/features-section"
 import DemoSection from "@/components/sections/demo-section"
 import HowItWorksSection from "@/components/sections/how-it-works-section"
 import InterestFormSection from "@/components/sections/interest-form-section"
+import SEOContent from "@/components/sections/seo-content"
 import Footer from "@/components/sections/footer"
 
 export default function AdTracker() {
@@ -26,6 +27,7 @@ export default function AdTracker() {
       <FeaturesSection />
       <DemoSection />
       <HowItWorksSection />
+      <SEOContent />
       <InterestFormSection />
       <Footer scrollToSection={scrollToSection} />
     </div>

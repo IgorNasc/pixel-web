@@ -2,8 +2,6 @@
 
 import { Resend } from 'resend';
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function submitInterestForm(formData: FormData) {
   const firstName = formData.get("firstName") as string
   const lastName = formData.get("lastName") as string
@@ -12,6 +10,7 @@ export async function submitInterestForm(formData: FormData) {
   const monthlyAdSpend = formData.get("monthlyAdSpend") as string
   const challenges = formData.get("challenges") as string
   const updates = formData.get("updates") as string
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   const emailData = {
     to: "suporte@adtracker.com.br",
@@ -114,7 +113,7 @@ export async function submitInterestForm(formData: FormData) {
             Dúvidas? Estamos aqui para ajudar!
           </p>
           <p style="margin: 0; font-size: 14px; opacity: 0.8;">
-            📧 contato@adtracker.com.br | 📱 WhatsApp: (11) 99999-9999
+            📧 contato@adtracker.com.br
           </p>
           <p style="margin: 15px 0 0 0; font-size: 12px; opacity: 0.6;">
             Você está recebendo este email porque se cadastrou para acesso antecipado do Ad Tracker.
@@ -123,6 +122,8 @@ export async function submitInterestForm(formData: FormData) {
       </div>
     `,
   }
+
+  // | 📱 WhatsApp: (11) 99999-9999
 
   await resend.emails.send({
     from: 'Ad Tracker <suporte@adtracker.com.br>',
