@@ -39,18 +39,13 @@ export default function Footer({ scrollToSection }: FooterProps) {
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection("demo")} className="hover:text-white transition-colors">
-                  Demo
-                </button>
-              </li>
-              <li>
                 <a href="#" className="hover:text-white transition-colors">
                   Documentação
                 </a>
               </li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h4 className="font-semibold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
@@ -99,7 +94,7 @@ export default function Footer({ scrollToSection }: FooterProps) {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
           <p>&copy; 2024 Ad Tracker. Todos os direitos reservados.</p>

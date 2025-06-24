@@ -1,5 +1,9 @@
 "use server"
 
+import { Resend } from 'resend';
+
+export const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function submitInterestForm(formData: FormData) {
   const firstName = formData.get("firstName") as string
   const lastName = formData.get("lastName") as string
@@ -9,14 +13,8 @@ export async function submitInterestForm(formData: FormData) {
   const challenges = formData.get("challenges") as string
   const updates = formData.get("updates") as string
 
-  // Simular delay de envio
-  await new Promise((resolve) => setTimeout(resolve, 2000))
-
-  // Aqui você integraria com seu serviço de email
-  // Por exemplo: SendGrid, Resend, Nodemailer, etc.
-
   const emailData = {
-    to: "contato@adtracker.com.br", // Seu email
+    to: "suporte@adtracker.com.br",
     subject: "🎯 Novo Interesse - Ad Tracker",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -126,13 +124,19 @@ export async function submitInterestForm(formData: FormData) {
     `,
   }
 
-  console.log("📧 Email para admin:", emailData)
-  console.log("📧 Email de confirmação:", confirmationEmail)
+  await resend.emails.send({
+    from: 'Ad Tracker <suporte@adtracker.com.br>',
+    to: emailData.to,
+    subject: emailData.subject,
+    html: emailData.html,
+  });
 
-  // Aqui você faria a integração real com o serviço de email
-  // Exemplo com Resend:
-  // await resend.emails.send(emailData)
-  // await resend.emails.send(confirmationEmail)
+  await resend.emails.send({
+    from: 'Ad Tracker <suporte@adtracker.com.br>',
+    to: confirmationEmail.to,
+    subject: confirmationEmail.subject,
+    html: confirmationEmail.html,
+  });
 
   return { success: true }
 }
