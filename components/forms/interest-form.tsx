@@ -28,7 +28,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
     updates: false,
   })
 
-  const totalSteps = 4
+  const totalSteps = 5
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -64,6 +64,8 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
       case 3:
         return formData.monthlyAdSpend
       case 4:
+        return formData.challenges && formData.goals
+      case 5:
         return true
       default:
         return false
@@ -115,7 +117,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     value={formData.firstName}
                     onChange={(e) => handleInputChange("firstName", e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                     placeholder="João"
                   />
                 </div>
@@ -126,7 +128,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     value={formData.lastName}
                     onChange={(e) => handleInputChange("lastName", e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                     placeholder="Silva"
                   />
                 </div>
@@ -140,7 +142,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                     placeholder="joao@empresa.com"
                   />
                 </div>
@@ -150,7 +152,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                     placeholder="(11) 99999-9999"
                   />
                 </div>
@@ -181,7 +183,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     value={formData.company}
                     onChange={(e) => handleInputChange("company", e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                     placeholder="Sua Empresa Ltda"
                   />
                 </div>
@@ -192,7 +194,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     value={formData.role}
                     onChange={(e) => handleInputChange("role", e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                   >
                     <option value="" className="text-gray-900">
                       Selecione seu cargo...
@@ -241,12 +243,12 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
-                  { value: "under-5k", label: "Menos de R$ 5.000", popular: false },
-                  { value: "5k-15k", label: "R$ 5.000 - R$ 15.000", popular: true },
-                  { value: "15k-30k", label: "R$ 15.000 - R$ 30.000", popular: true },
-                  { value: "30k-50k", label: "R$ 30.000 - R$ 50.000", popular: false },
-                  { value: "50k-100k", label: "R$ 50.000 - R$ 100.000", popular: false },
-                  { value: "100k-plus", label: "Mais de R$ 100.000", popular: false },
+                  { value: "under-5k", label: "Menos de R$ 5.000" },
+                  { value: "5k-15k", label: "R$ 5.000 - R$ 15.000" },
+                  { value: "15k-30k", label: "R$ 15.000 - R$ 30.000" },
+                  { value: "30k-50k", label: "R$ 30.000 - R$ 50.000" },
+                  { value: "50k-100k", label: "R$ 50.000 - R$ 100.000" },
+                  { value: "100k-plus", label: "Mais de R$ 100.000" },
                 ].map((option) => (
                   <div
                     key={option.value}
@@ -257,9 +259,6 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     }`}
                     onClick={() => handleInputChange("monthlyAdSpend", option.value)}
                   >
-                    {option.popular && (
-                      <Badge className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs">Popular</Badge>
-                    )}
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-4 h-4 rounded-full border-2 ${
@@ -298,7 +297,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                     value={formData.challenges}
                     onChange={(e) => handleInputChange("challenges", e.target.value)}
                     rows={3}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 resize-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 resize-none transition-all"
                     placeholder="Ex: Perda de dados por bloqueadores, dificuldade em medir ROAS real, problemas com iOS 14.5..."
                   />
                 </div>
@@ -310,7 +309,7 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
                   <select
                     value={formData.goals}
                     onChange={(e) => handleInputChange("goals", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white/15 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-white/70 focus:border-white/70 transition-all"
                   >
                     <option value="" className="text-gray-900">
                       Selecione seu objetivo...
@@ -359,8 +358,8 @@ export default function InterestForm({ onSubmit, isSubmitting }: InterestFormPro
           <Button
             type="button"
             onClick={prevStep}
-            variant="outline"
-            className={`border-white/30 text-white hover:bg-white/20 hover:text-white ${currentStep === 1 ? "invisible" : ""}`}
+            variant="ghost"
+            className={`border border-white/30 text-white hover:bg-white/20 hover:text-white hover:border-white/50 bg-transparent ${currentStep === 1 ? "invisible" : ""}`}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar

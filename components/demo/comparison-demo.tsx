@@ -71,22 +71,22 @@ export default function ComparisonDemo() {
 
       {/* Comparison Cards */}
       <div className="grid md:grid-cols-2 gap-6">
-        <Card className="border-red-200 bg-red-50">
+        <Card className="border-red-200 bg-red-50 shadow-lg">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-red-600" />
-              <CardTitle className="text-red-700">❌ Método Tradicional</CardTitle>
+              <AlertTriangle className="w-5 h-5 text-red-700" />
+              <CardTitle className="text-red-800">❌ Método Tradicional</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-3 bg-white rounded-lg">
-                <div className="text-2xl font-bold text-red-600">65%</div>
-                <div className="text-sm text-gray-600">Precisão dos Dados</div>
+              <div className="text-center p-3 bg-white rounded-lg border border-red-100">
+                <div className="text-2xl font-bold text-red-700">65%</div>
+                <div className="text-sm text-gray-700">Precisão dos Dados</div>
               </div>
-              <div className="text-center p-3 bg-white rounded-lg">
-                <div className="text-2xl font-bold text-red-600">35%</div>
-                <div className="text-sm text-gray-600">Taxa de Bloqueio</div>
+              <div className="text-center p-3 bg-white rounded-lg border border-red-100">
+                <div className="text-2xl font-bold text-red-700">35%</div>
+                <div className="text-sm text-gray-700">Taxa de Bloqueio</div>
               </div>
             </div>
             <div className="space-y-2">
@@ -106,22 +106,22 @@ export default function ComparisonDemo() {
           </CardContent>
         </Card>
 
-        <Card className="border-green-200 bg-green-50">
+        <Card className="border-green-200 bg-green-50 shadow-lg">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <CardTitle className="text-green-700">✅ Ad Tracker</CardTitle>
+              <CheckCircle className="w-5 h-5 text-green-700" />
+              <CardTitle className="text-green-800">✅ Ad Tracker</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-3 bg-white rounded-lg">
-                <div className="text-2xl font-bold text-green-600">94%</div>
-                <div className="text-sm text-gray-600">Precisão dos Dados</div>
+              <div className="text-center p-3 bg-white rounded-lg border border-green-100">
+                <div className="text-2xl font-bold text-green-700">94%</div>
+                <div className="text-sm text-gray-700">Precisão dos Dados</div>
               </div>
-              <div className="text-center p-3 bg-white rounded-lg">
-                <div className="text-2xl font-bold text-green-600">2%</div>
-                <div className="text-sm text-gray-600">Taxa de Bloqueio</div>
+              <div className="text-center p-3 bg-white rounded-lg border border-green-100">
+                <div className="text-2xl font-bold text-green-700">2%</div>
+                <div className="text-sm text-gray-700">Taxa de Bloqueio</div>
               </div>
             </div>
             <div className="space-y-2">

@@ -2,7 +2,9 @@ import type React from "react"
 import type { Metadata } from "next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter } from "next/font/google"
+import GoogleAnalytics from "@/components/analytics/google-analytics"
 import "./globals.css"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -87,7 +89,7 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
     yandex: "your-yandex-verification-code",
   },
-  generator: 'v0.dev'
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -111,6 +113,7 @@ export default function RootLayout({
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -247,7 +250,8 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        {children}
+        <GoogleAnalytics />
+        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         <SpeedInsights />
       </body>
     </html>

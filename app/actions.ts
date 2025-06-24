@@ -113,7 +113,7 @@ export async function submitInterestForm(formData: FormData) {
             Dúvidas? Estamos aqui para ajudar!
           </p>
           <p style="margin: 0; font-size: 14px; opacity: 0.8;">
-            📧 contato@adtracker.com.br
+            📧 suporte@adtracker.com.br
           </p>
           <p style="margin: 15px 0 0 0; font-size: 12px; opacity: 0.6;">
             Você está recebendo este email porque se cadastrou para acesso antecipado do Ad Tracker.

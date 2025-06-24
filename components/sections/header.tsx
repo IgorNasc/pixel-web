@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Menu, X, BarChart3 } from "lucide-react"
+import { useGoogleAnalytics } from "@/components/analytics/google-analytics"
 
 interface HeaderProps {
   mobileMenuOpen: boolean
@@ -10,6 +11,18 @@ interface HeaderProps {
 }
 
 export default function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }: HeaderProps) {
+  const { trackButtonClick } = useGoogleAnalytics()
+
+  const handleNavClick = (section: string) => {
+    trackButtonClick(`nav_${section}`, "header")
+    scrollToSection(section)
+  }
+
+  const handleCTAClick = () => {
+    trackButtonClick("comecar_agora", "header")
+    scrollToSection("interest-form")
+  }
+
   return (
     <header className="border-b bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
@@ -29,25 +42,25 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSect
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("features")}
+              onClick={() => handleNavClick("features")}
               className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
             >
               Recursos
             </button>
             <button
-              onClick={() => scrollToSection("how-it-works")}
+              onClick={() => handleNavClick("how-it-works")}
               className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
             >
               Como Funciona
             </button>
             <button
-              onClick={() => scrollToSection("pricing")}
+              onClick={() => handleNavClick("pricing")}
               className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
             >
               Preços
             </button>
             <Button
-              onClick={() => scrollToSection("interest-form")}
+              onClick={handleCTAClick}
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
             >
               Começar Agora
@@ -65,25 +78,25 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSect
           <div className="lg:hidden mt-4 pb-4 border-t pt-4">
             <nav className="flex flex-col gap-4">
               <button
-                onClick={() => scrollToSection("features")}
+                onClick={() => handleNavClick("features")}
                 className="text-left text-gray-600 hover:text-blue-600 font-medium transition-colors"
               >
                 Recursos
               </button>
               <button
-                onClick={() => scrollToSection("how-it-works")}
+                onClick={() => handleNavClick("how-it-works")}
                 className="text-left text-gray-600 hover:text-blue-600 font-medium transition-colors"
               >
                 Como Funciona
               </button>
               <button
-                onClick={() => scrollToSection("pricing")}
+                onClick={() => handleNavClick("pricing")}
                 className="text-left text-gray-600 hover:text-blue-600 font-medium transition-colors"
               >
                 Preços
               </button>
               <Button
-                onClick={() => scrollToSection("interest-form")}
+                onClick={handleCTAClick}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full"
               >
                 Começar Agora

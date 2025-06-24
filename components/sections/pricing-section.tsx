@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, ArrowRight } from "lucide-react"
+import { useGoogleAnalytics } from "@/components/analytics/google-analytics"
 
 interface PricingSectionProps {
   scrollToSection: (sectionId: string) => void
@@ -20,6 +21,13 @@ const features = [
 ]
 
 export default function PricingSection({ scrollToSection }: PricingSectionProps) {
+  const { trackButtonClick } = useGoogleAnalytics()
+
+  const handlePricingCTA = () => {
+    trackButtonClick("garantir_preco_lancamento", "pricing")
+    scrollToSection("interest-form")
+  }
+
   return (
     <section id="pricing" className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-4xl text-center">
@@ -28,7 +36,7 @@ export default function PricingSection({ scrollToSection }: PricingSectionProps)
 
         <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border-2 border-blue-100 relative overflow-hidden">
           <div className="absolute top-4 right-4">
-            <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">🔥 Oferta de Lançamento</Badge>
+            <Badge className="bg-blue-600 text-white hover:bg-blue-700">🔥 Oferta de Lançamento</Badge>
           </div>
 
           <div className="text-center mb-8">
@@ -45,7 +53,7 @@ export default function PricingSection({ scrollToSection }: PricingSectionProps)
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {features.map((feature, index) => (
               <div key={index} className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <span>{feature}</span>
               </div>
             ))}
@@ -54,7 +62,7 @@ export default function PricingSection({ scrollToSection }: PricingSectionProps)
           <Button
             size="lg"
             className="w-full text-lg py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
-            onClick={() => scrollToSection("interest-form")}
+            onClick={handlePricingCTA}
           >
             Garantir Preço de Lançamento
             <ArrowRight className="w-5 h-5 ml-2" />

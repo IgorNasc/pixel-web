@@ -1,21 +1,29 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Users, Star } from "lucide-react"
 import { submitInterestForm } from "@/app/actions"
 import InterestForm from "@/components/forms/interest-form"
 import SuccessMessage from "@/components/ui/success-message"
+import { useGoogleAnalytics } from "@/components/analytics/google-analytics"
 
 export default function InterestFormSection() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { trackFormSubmission, trackSectionView } = useGoogleAnalytics()
+
+  useEffect(() => {
+    // Rastrear visualização da seção do formulário
+    trackSectionView("interest_form")
+  }, [trackSectionView])
 
   const handleFormSubmit = async (formData: FormData) => {
     setIsSubmitting(true)
     try {
       await submitInterestForm(formData)
       setFormSubmitted(true)
+      trackFormSubmission("interest_form")
     } catch (error) {
       console.error("Erro ao enviar formulário:", error)
     } finally {

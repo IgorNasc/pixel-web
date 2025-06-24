@@ -42,9 +42,11 @@ export default function SEOContent() {
             </div>
           </div>
 
-          <div className="mt-12 p-6 bg-blue-50 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4 text-center">Principais Benefícios do Ad Tracker</h3>
-            <ul className="grid md:grid-cols-2 gap-2 text-sm">
+          <div className="mt-12 p-6 bg-blue-50 rounded-lg border border-blue-200">
+            <h3 className="text-xl font-semibold mb-4 text-center text-blue-900">
+              Principais Benefícios do Ad Tracker
+            </h3>
+            <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-800">
               <li>
                 ✅ <strong>94% de precisão</strong> no rastreamento de conversões
               </li>
@@ -73,7 +75,7 @@ export default function SEOContent() {
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-gray-600">
+            <p className="text-gray-700">
               Junte-se a centenas de <strong>media buyers</strong>, <strong>agências de marketing digital</strong> e
               <strong> e-commerces brasileiros</strong> que já revolucionaram seus resultados com o Ad Tracker.
             </p>

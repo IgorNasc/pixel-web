@@ -41,7 +41,7 @@ export default function FeaturesSection() {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className={`border-2 ${feature.hoverColor} transition-all duration-300 hover:shadow-xl bg-white/80 backdrop-blur-sm`}
+              className={`border-2 ${feature.hoverColor} transition-all duration-300 hover:shadow-xl bg-white backdrop-blur-sm`}
             >
               <CardHeader>
                 <div
@@ -56,7 +56,7 @@ export default function FeaturesSection() {
                 <ul className="space-y-3 text-sm">
                   {feature.benefits.map((benefit, benefitIndex) => (
                     <li key={benefitIndex} className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-4 h-4 text-green-600" />
                       {benefit}
                     </li>
                   ))}

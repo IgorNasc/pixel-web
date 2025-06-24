@@ -27,7 +27,7 @@ export default function SuccessMessage({ onReset }: SuccessMessageProps) {
             <li>💰 Garanta o preço especial de R$ 49,90/mês</li>
           </ul>
         </div>
-        <Button onClick={onReset} variant="outline" className="border-white/30 text-white hover:bg-white/20">
+        <Button onClick={onReset} variant="outline" className="border border-white/30 text-white hover:bg-white/20 hover:text-white hover:border-white/50 bg-transparent">
           Cadastrar Outro Email
         </Button>
       </div>
