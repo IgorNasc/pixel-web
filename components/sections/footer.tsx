@@ -28,15 +28,15 @@ export default function Footer({ scrollToSection }: FooterProps) {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>contato@adtracker.com.br</span>
+                <span>suporte@adtracker.com.br</span>
               </div>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 <span>(11) 99999-9999</span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                <span>São Paulo, Brasil</span>
+                <span>Minas Gerais, Brasil</span>
               </div>
             </div>
           </div>
@@ -144,9 +144,9 @@ export default function Footer({ scrollToSection }: FooterProps) {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">&copy; 2024 Ad Tracker Brasil. Todos os direitos reservados.</p>
             <div className="flex gap-4 text-sm text-gray-400">
-              <span>CNPJ: 00.000.000/0001-00</span>
-              <span>|</span>
-              <span>São Paulo, SP</span>
+              {/* <span>CNPJ: 00.000.000/0001-00</span> */}
+              {/* <span>|</span> */}
+              <span>Belo Horizonte, MG</span>
             </div>
           </div>
 

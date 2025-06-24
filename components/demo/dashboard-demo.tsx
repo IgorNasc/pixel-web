@@ -24,10 +24,10 @@ const hourlyData = [
 
 const funnelData = [
   { stage: "Impressões", value: 125000, percentage: 100 },
-  { stage: "Cliques", value: 3750, percentage: 3 },
-  { stage: "Visitantes", value: 3200, percentage: 2.56 },
-  { stage: "Leads", value: 480, percentage: 0.38 },
-  { stage: "Vendas", value: 96, percentage: 0.077 },
+  { stage: "Cliques", value: 3750, percentage: 30 },
+  { stage: "Visitantes", value: 3200, percentage: 25.6 },
+  { stage: "Leads", value: 480, percentage: 3.8 },
+  { stage: "Vendas", value: 96, percentage: 0.77 },
 ]
 
 const campaignData = [
@@ -284,7 +284,7 @@ export default function DashboardDemo() {
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
                       className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.max(stage.percentage * 10, 5)}%` }}
+                      style={{ width: `${Math.max(stage.percentage, 5)}%` }}
                     />
                   </div>
                   <div className="text-xs text-gray-500">

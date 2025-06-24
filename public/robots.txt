@@ -1,0 +1,35 @@
+# Robots.txt para Ad Tracker Brasil
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://adtracker.com.br/sitemap.xml
+
+# Disallow admin areas (quando implementadas)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Allow important pages
+Allow: /
+Allow: /recursos
+Allow: /precos
+Allow: /como-funciona
+Allow: /contato
+Allow: /blog
+
+# Crawl delay (opcional)
+Crawl-delay: 1
+
+# Specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
