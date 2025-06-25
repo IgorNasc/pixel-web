@@ -1,6 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { Line, XAxis, YAxis, CartesianGrid, AreaChart, Area, BarChart, Bar, ComposedChart } from "recharts"
+import {
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  ComposedChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts"
 import { TrendingUp, TrendingDown, DollarSign, Users, Target, Clock } from "lucide-react"
 
 const conversionData = [
@@ -22,12 +33,13 @@ const hourlyData = [
   { hour: "20h", conversions: 41, cost: 98 },
 ]
 
+// Atualizar os dados do funil de conversão com valores maiores
 const funnelData = [
   { stage: "Impressões", value: 125000, percentage: 100 },
-  { stage: "Cliques", value: 3750, percentage: 30 },
-  { stage: "Visitantes", value: 3200, percentage: 25.6 },
-  { stage: "Leads", value: 480, percentage: 3.8 },
-  { stage: "Vendas", value: 96, percentage: 0.77 },
+  { stage: "Cliques", value: 3750, percentage: 15 },
+  { stage: "Visitantes", value: 3200, percentage: 12 },
+  { stage: "Leads", value: 480, percentage: 8 },
+  { stage: "Vendas", value: 96, percentage: 5 },
 ]
 
 const campaignData = [
@@ -192,29 +204,32 @@ export default function DashboardDemo() {
             <CardDescription>Conversões e receita - últimos 7 dias</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                conversions: { label: "Conversões", color: "#3B82F6" },
-                revenue: { label: "Receita (R$)", color: "#10B981" },
-              }}
-              className="h-[300px]"
-            >
-              <AreaChart data={conversionData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Area
-                  type="monotone"
-                  dataKey="cookieless"
-                  stackId="1"
-                  stroke="#3B82F6"
-                  fill="#3B82F6"
-                  fillOpacity={0.6}
-                />
-                <Area type="monotone" dataKey="revenue" stackId="2" stroke="#10B981" fill="#10B981" fillOpacity={0.4} />
-              </AreaChart>
-            </ChartContainer>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={conversionData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Area
+                    type="monotone"
+                    dataKey="cookieless"
+                    stackId="1"
+                    stroke="#3B82F6"
+                    fill="#3B82F6"
+                    fillOpacity={0.6}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="revenue"
+                    stackId="2"
+                    stroke="#10B981"
+                    fill="#10B981"
+                    fillOpacity={0.4}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
 
@@ -224,21 +239,17 @@ export default function DashboardDemo() {
             <CardDescription>Conversões ao longo do dia</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                conversions: { label: "Conversões", color: "#8B5CF6" },
-                cost: { label: "Custo (R$)", color: "#F59E0B" },
-              }}
-              className="h-[300px]"
-            >
-              <BarChart data={hourlyData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="hour" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="conversions" fill="#8B5CF6" />
-              </BarChart>
-            </ChartContainer>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={hourlyData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="hour" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="conversions" fill="#8B5CF6" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -284,7 +295,7 @@ export default function DashboardDemo() {
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
                       className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.max(stage.percentage, 5)}%` }}
+                      style={{ width: `${stage.percentage}%` }}
                     />
                   </div>
                   <div className="text-xs text-gray-500">
@@ -304,32 +315,25 @@ export default function DashboardDemo() {
           <CardDescription>Investimento, receita, lucro e métricas de performance</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer
-            config={{
-              adSpend: { label: "Investimento (R$)", color: "#EF4444" },
-              revenue: { label: "Receita (R$)", color: "#10B981" },
-              profit: { label: "Lucro (R$)", color: "#3B82F6" },
-              roas: { label: "ROAS", color: "#8B5CF6" },
-            }}
-            className="h-[400px]"
-          >
-            <ComposedChart data={detailedCostAnalysis}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis yAxisId="left" />
-              <YAxis yAxisId="right" orientation="right" />
-              <ChartTooltip
-                content={<ChartTooltipContent />}
-                formatter={(value, name) => {
-                  if (name === "roas") return [`${value}x`, name]
-                  return [`R$ ${value}`, name]
-                }}
-              />
-              <Bar yAxisId="left" dataKey="adSpend" fill="#EF4444" />
-              <Bar yAxisId="left" dataKey="profit" fill="#3B82F6" />
-              <Line yAxisId="right" type="monotone" dataKey="roas" stroke="#8B5CF6" strokeWidth={3} />
-            </ComposedChart>
-          </ChartContainer>
+          <div className="h-[400px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={detailedCostAnalysis}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis yAxisId="left" />
+                <YAxis yAxisId="right" orientation="right" />
+                <Tooltip
+                  formatter={(value, name) => {
+                    if (name === "roas") return [`${value}x`, name]
+                    return [`R$ ${value}`, name]
+                  }}
+                />
+                <Bar yAxisId="left" dataKey="adSpend" fill="#EF4444" />
+                <Bar yAxisId="left" dataKey="profit" fill="#3B82F6" />
+                <Line yAxisId="right" type="monotone" dataKey="roas" stroke="#8B5CF6" strokeWidth={3} />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
 

@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line } from "recharts"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line, Tooltip, ResponsiveContainer } from "recharts"
 import { AlertTriangle, CheckCircle, TrendingUp, Shield } from "lucide-react"
 
 const conversionData = [
@@ -50,22 +49,18 @@ export default function ComparisonDemo() {
           <CardDescription>Comparação de conversões rastreadas com precisão</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer
-            config={{
-              traditional: { label: "Método Tradicional", color: "#EF4444" },
-              cookieless: { label: "Ad Tracker", color: "#10B981" },
-            }}
-            className="h-[400px]"
-          >
-            <BarChart data={conversionData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="traditional" fill="#EF4444" />
-              <Bar dataKey="cookieless" fill="#10B981" />
-            </BarChart>
-          </ChartContainer>
+          <div className="h-[400px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={conversionData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="traditional" fill="#EF4444" />
+                <Bar dataKey="cookieless" fill="#10B981" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
 
@@ -149,22 +144,18 @@ export default function ComparisonDemo() {
           <CardDescription>Porcentagem de dados bloqueados por tipo de dispositivo</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer
-            config={{
-              traditional: { label: "Método Tradicional", color: "#EF4444" },
-              adtracker: { label: "Ad Tracker", color: "#10B981" },
-            }}
-            className="h-[300px]"
-          >
-            <BarChart data={deviceBlockingData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="device" />
-              <YAxis />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="traditional" fill="#EF4444" />
-              <Bar dataKey="adtracker" fill="#10B981" />
-            </BarChart>
-          </ChartContainer>
+          <div className="h-[300px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={deviceBlockingData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="device" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="traditional" fill="#EF4444" />
+                <Bar dataKey="adtracker" fill="#10B981" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
 
@@ -175,43 +166,38 @@ export default function ComparisonDemo() {
           <CardDescription>Comparativo de custos mensais e economia gerada</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer
-            config={{
-              traditional: { label: "Custo Tradicional", color: "#EF4444" },
-              adtracker: { label: "Custo Ad Tracker", color: "#10B981" },
-              savings: { label: "Economia", color: "#3B82F6" },
-            }}
-            className="h-[350px]"
-          >
-            <LineChart data={costSavingsData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <Line
-                type="monotone"
-                dataKey="traditional"
-                stroke="#EF4444"
-                strokeWidth={3}
-                dot={{ fill: "#EF4444", strokeWidth: 2, r: 4 }}
-              />
-              <Line
-                type="monotone"
-                dataKey="adtracker"
-                stroke="#10B981"
-                strokeWidth={3}
-                dot={{ fill: "#10B981", strokeWidth: 2, r: 4 }}
-              />
-              <Line
-                type="monotone"
-                dataKey="savings"
-                stroke="#3B82F6"
-                strokeWidth={2}
-                strokeDasharray="5 5"
-                dot={{ fill: "#3B82F6", strokeWidth: 2, r: 3 }}
-              />
-            </LineChart>
-          </ChartContainer>
+          <div className="h-[350px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={costSavingsData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="traditional"
+                  stroke="#EF4444"
+                  strokeWidth={3}
+                  dot={{ fill: "#EF4444", strokeWidth: 2, r: 4 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="adtracker"
+                  stroke="#10B981"
+                  strokeWidth={3}
+                  dot={{ fill: "#10B981", strokeWidth: 2, r: 4 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="savings"
+                  stroke="#3B82F6"
+                  strokeWidth={2}
+                  strokeDasharray="5 5"
+                  dot={{ fill: "#3B82F6", strokeWidth: 2, r: 3 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
 

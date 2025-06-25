@@ -14,7 +14,6 @@ export default function InterestFormSection() {
   const { trackFormSubmission, trackSectionView } = useGoogleAnalytics()
 
   useEffect(() => {
-    // Rastrear visualização da seção do formulário
     trackSectionView("interest_form")
   }, [trackSectionView])
 
@@ -41,14 +40,38 @@ export default function InterestFormSection() {
         {!formSubmitted ? (
           <>
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">🚀 Garanta Seu Acesso Antecipado</h2>
-              <p className="text-xl opacity-90 mb-4">
-                Seja um dos primeiros a usar o Ad Tracker e pague apenas <strong>R$ 49,90/mês</strong>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">🔥 Garanta Seu Desconto de 50%</h2>
+              <p className="text-xl opacity-90 mb-6">
+                Seja um dos primeiros a usar o Ad Tracker e pague apenas <strong>R$ 29,90</strong> (ao invés de R$
+                59,90)
               </p>
-              <div className="flex items-center justify-center gap-4 text-sm opacity-80">
+
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 mb-6">
+                <h3 className="text-2xl font-bold mb-4">💰 Promoção de Lançamento - 50% OFF</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-white/20 rounded-xl p-4">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-lg line-through opacity-75">R$ 59,90</span>
+                      <span className="text-3xl font-bold">R$ 29,90</span>
+                    </div>
+                    <div className="text-sm opacity-90">Plano Starter</div>
+                    <div className="text-xs opacity-75 text-green-200">Economia de R$ 30/mês</div>
+                  </div>
+                  <div className="bg-white/20 rounded-xl p-4">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-lg line-through opacity-75">R$ 79,90</span>
+                      <span className="text-3xl font-bold">R$ 39,90</span>
+                    </div>
+                    <div className="text-sm opacity-90">Plano Professional</div>
+                    <div className="text-xs opacity-75 text-green-200">Economia de R$ 40/mês</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center gap-6 text-sm opacity-80 mb-6">
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4" />
-                  <span>+500 interessados</span>
+                  <span>500+ interessados</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4" />

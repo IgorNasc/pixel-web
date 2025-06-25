@@ -1,6 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, AreaChart, Area } from "recharts"
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  AreaChart,
+  Area,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts"
 import { MapPin, Clock, ShoppingCart, Smartphone } from "lucide-react"
 
 const audienceData = [
@@ -79,30 +91,25 @@ export default function AudienceDemo() {
             <CardDescription>Distribuição por tipo de dispositivo</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                desktop: { label: "Desktop", color: "#8884d8" },
-                mobile: { label: "Mobile", color: "#82ca9d" },
-                tablet: { label: "Tablet", color: "#ffc658" },
-              }}
-              className="h-[250px]"
-            >
-              <PieChart>
-                <Pie
-                  data={audienceData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  dataKey="value"
-                  label={({ name, value }) => `${name}: ${value}%`}
-                >
-                  {audienceData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <ChartTooltip content={<ChartTooltipContent />} />
-              </PieChart>
-            </ChartContainer>
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={audienceData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    dataKey="value"
+                    label={({ name, value }) => `${name}: ${value}%`}
+                  >
+                    {audienceData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
 
@@ -112,29 +119,25 @@ export default function AudienceDemo() {
             <CardDescription>Distribuição e performance por gênero</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                feminino: { label: "Feminino", color: "#EC4899" },
-                masculino: { label: "Masculino", color: "#3B82F6" },
-              }}
-              className="h-[250px]"
-            >
-              <PieChart>
-                <Pie
-                  data={genderData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  dataKey="value"
-                  label={({ name, value }) => `${name}: ${value}%`}
-                >
-                  {genderData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <ChartTooltip content={<ChartTooltipContent />} />
-              </PieChart>
-            </ChartContainer>
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={genderData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    dataKey="value"
+                    label={({ name, value }) => `${name}: ${value}%`}
+                  >
+                    {genderData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
 
@@ -200,29 +203,25 @@ export default function AudienceDemo() {
             <CardDescription>Usuários e conversões ao longo do dia</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                users: { label: "Usuários", color: "#3B82F6" },
-                conversions: { label: "Conversões", color: "#10B981" },
-              }}
-              className="h-[300px]"
-            >
-              <AreaChart data={timeData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="hour" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Area type="monotone" dataKey="users" stackId="1" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.6} />
-                <Area
-                  type="monotone"
-                  dataKey="conversions"
-                  stackId="2"
-                  stroke="#10B981"
-                  fill="#10B981"
-                  fillOpacity={0.8}
-                />
-              </AreaChart>
-            </ChartContainer>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={timeData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="hour" />
+                  <YAxis />
+                  <Tooltip />
+                  <Area type="monotone" dataKey="users" stackId="1" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.6} />
+                  <Area
+                    type="monotone"
+                    dataKey="conversions"
+                    stackId="2"
+                    stroke="#10B981"
+                    fill="#10B981"
+                    fillOpacity={0.8}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -235,21 +234,17 @@ export default function AudienceDemo() {
             <CardDescription>Performance por modelo de dispositivo</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                conversions: { label: "Conversões", color: "#8B5CF6" },
-                conversionRate: { label: "Taxa de Conversão (%)", color: "#F59E0B" },
-              }}
-              className="h-[300px]"
-            >
-              <BarChart data={deviceDetailData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="device" angle={-45} textAnchor="end" height={80} />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="conversions" fill="#8B5CF6" />
-              </BarChart>
-            </ChartContainer>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={deviceDetailData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="device" angle={-45} textAnchor="end" height={80} />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="conversions" fill="#8B5CF6" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
 
@@ -315,20 +310,17 @@ export default function AudienceDemo() {
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-gray-700">Taxa de Engajamento</h4>
-              <ChartContainer
-                config={{
-                  engagement: { label: "Engajamento (%)", color: "#06B6D4" },
-                }}
-                className="h-[250px]"
-              >
-                <BarChart data={interestData} layout="horizontal">
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis dataKey="interest" type="category" width={100} />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="engagement" fill="#06B6D4" />
-                </BarChart>
-              </ChartContainer>
+              <div className="h-[250px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={interestData} layout="horizontal">
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis dataKey="interest" type="category" width={100} />
+                    <Tooltip />
+                    <Bar dataKey="engagement" fill="#06B6D4" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
         </CardContent>

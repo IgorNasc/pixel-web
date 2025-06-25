@@ -24,10 +24,10 @@ export default function SuccessMessage({ onReset }: SuccessMessageProps) {
             <li>✅ Confirme seu email (verifique a caixa de spam)</li>
             <li>📱 Siga nossas redes sociais para atualizações</li>
             <li>🚀 Aguarde o convite para acesso antecipado</li>
-            <li>💰 Garanta o preço especial de R$ 49,90/mês</li>
+            <li>💰 Garanta o preço especial de R$ 29,90/mês</li>
           </ul>
         </div>
-        <Button onClick={onReset} variant="outline" className="border border-white/30 text-white hover:bg-white/20 hover:text-white hover:border-white/50 bg-transparent">
+        <Button onClick={onReset} variant="outline" className="border-white/30 text-white hover:bg-white/20">
           Cadastrar Outro Email
         </Button>
       </div>
