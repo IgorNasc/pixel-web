@@ -10,7 +10,7 @@ export async function submitInterestForm(formData: FormData) {
   const monthlyAdSpend = formData.get("monthlyAdSpend") as string
   const challenges = formData.get("challenges") as string
   const updates = formData.get("updates") as string
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const resend = new Resend("re_VmT4QMEm_D2N9b9bZTE9YdYiSaiQExRak");
 
   const emailData = {
     to: "suporte@adtracker.com.br",
