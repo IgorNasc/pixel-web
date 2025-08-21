@@ -1,112 +1,58 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Activity, BarChart3, CheckCircle, AlertTriangle } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { BarChart3, Smartphone, Lock, Globe, Clock, Users } from "lucide-react"
+import { FEATURES } from "@/lib/constants"
+import type { ThemeClasses } from "@/lib/theme"
 
-const features = [
-  {
-    icon: AlertTriangle,
-    title: "Você Está Perdendo Dinheiro",
-    description:
-      "40% das conversões não chegam ao Meta. Isso significa CPA mais alto, ROAS menor e orçamento desperdiçado todo mês.",
-    color: "from-red-400 to-red-500",
-    hoverColor: "hover:border-red-200",
-    benefits: ["40% dos dados são perdidos", "CPA até 50% mais alto", "ROAS 35% abaixo do potencial"],
-    bgColor: "bg-red-50",
-    borderColor: "border-red-200",
-  },
-  {
-    icon: Activity,
-    title: "Rastreamento Que Funciona",
-    description:
-      "Ad Tracker captura 94% das conversões mesmo com bloqueadores ativos. Seus concorrentes ainda não descobriram isso.",
-    color: "from-blue-500 to-blue-600",
-    hoverColor: "hover:border-blue-200",
-    benefits: ["94% de precisão comprovada", "Funciona com bloqueadores", "Dados em tempo real"],
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-200",
-  },
-  {
-    icon: BarChart3,
-    title: "Resultados Imediatos",
-    description: "Clientes relatam redução de 35% no CPA e aumento de 45% no ROAS em apenas 30 dias. O ROI é imediato.",
-    color: "from-green-400 to-green-500",
-    hoverColor: "hover:border-green-200",
-    benefits: ["CPA -35% em 30 dias", "ROAS +45% comprovado", "ROI de 1.200%+"],
-    bgColor: "bg-green-50",
-    borderColor: "border-green-200",
-  },
-]
+interface FeaturesSectionProps {
+  themeClasses: ThemeClasses
+}
 
-export default function FeaturesSection() {
+const iconMap = {
+  BarChart3,
+  Smartphone,
+  Lock,
+  Globe,
+  Clock,
+  Users,
+}
+
+export function FeaturesSection({ themeClasses }: FeaturesSectionProps) {
   return (
-    <section id="features" className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="funcionalidades" className={`py-12 md:py-20 px-4 ${themeClasses.bgSecondary}`}>
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Por Que Você PRECISA do Ad Tracker</h2>
-          <p className="text-xl text-gray-600">Cada dia sem dados completos = dinheiro perdido</p>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 ${themeClasses.textPrimary}`}>
+            Funcionalidades <span className="text-blue-600">Avançadas</span>
+          </h2>
+          <p className={`text-lg md:text-xl ${themeClasses.textSecondary} px-4`}>
+            Tudo que você precisa para maximizar seus resultados em anúncios pagos.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <Card
-              key={index}
-              className={`border-2 ${feature.hoverColor} ${feature.bgColor} ${feature.borderColor} transition-all duration-300 hover:shadow-xl backdrop-blur-sm`}
-            >
-              <CardHeader>
-                <div
-                  className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-4 shadow-lg`}
-                >
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
-                <CardDescription className="text-base font-medium">{feature.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-sm">
-                  {feature.benefits.map((benefit, benefitIndex) => (
-                    <li key={benefitIndex} className="flex items-center gap-2">
-                      {index === 2 ? (
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                      ) : (
-                        <div
-                          className={`w-4 h-4 rounded-full ${index === 0 ? "bg-red-400" : "bg-blue-500"} flex items-center justify-center`}
-                        >
-                          <span className="text-white text-xs font-bold">{index === 0 ? "!" : "✓"}</span>
-                        </div>
-                      )}
-                      <span className={index === 0 ? "text-red-600" : index === 1 ? "text-blue-700" : "text-green-600"}>
-                        {benefit}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* ROI Calculator */}
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-lg">
-          <h3 className="text-2xl font-bold text-center mb-8">💰 Calculadora de Economia Real</h3>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white/20 rounded-xl p-6">
-              <div className="text-3xl font-bold mb-2">R$ 10.000</div>
-              <div className="text-sm opacity-90 mb-4">Seu investimento mensal em ads</div>
-              <div className="text-red-200 font-medium">Perdendo R$ 4.000/mês</div>
-              <div className="text-xs opacity-75 mt-2">40% de dados perdidos</div>
-            </div>
-            <div className="bg-white/20 rounded-xl p-6">
-              <div className="text-3xl font-bold mb-2">R$ 30</div>
-              <div className="text-sm opacity-90 mb-4">Custo do Ad Tracker</div>
-              <div className="text-green-200 font-medium">✅ Economia de R$ 3.970</div>
-              <div className="text-xs opacity-75 mt-2">ROI de 13.233%</div>
-            </div>
-            <div className="bg-white/20 rounded-xl p-6">
-              <div className="text-3xl font-bold mb-2">R$ 47.640</div>
-              <div className="text-sm opacity-90 mb-4">Economia anual</div>
-              <div className="text-green-200 font-medium">✅ Investindo apenas R$ 360</div>
-              <div className="text-xs opacity-75 mt-2">Diferença de R$ 47.280</div>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          {FEATURES.map((feature, index) => {
+            const IconComponent = iconMap[feature.icon as keyof typeof iconMap]
+            return (
+              <Card
+                key={index}
+                className={`${themeClasses.bgCard} ${themeClasses.borderCard} ${themeClasses.hoverCard} transition-colors h-full`}
+              >
+                <CardHeader className="pb-3 md:pb-4">
+                  <div
+                    className={`w-10 h-10 md:w-12 md:h-12 ${themeClasses.bgBlue} rounded-lg flex items-center justify-center mb-3 md:mb-4`}
+                  >
+                    <IconComponent className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+                  </div>
+                  <CardTitle className={`${themeClasses.textPrimary} text-lg md:text-xl`}>{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className={`${themeClasses.textSecondary} text-sm md:text-base leading-relaxed`}>
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

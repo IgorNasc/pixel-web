@@ -1,3 +1,4 @@
 onlyBuiltDependencies:
-  - '@vercel/speed-insights'
-  - sharp
+  - '@prisma/client'
+  - '@prisma/engines'
+  - prisma

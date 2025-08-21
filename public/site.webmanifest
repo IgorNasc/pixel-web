@@ -1,15 +1,16 @@
 {
-  "name": "Ad Tracker - Analytics Sem Cookies para Meta Ads",
-  "short_name": "Ad Tracker",
-  "description": "Rastreamento sem cookies para Meta Ads com 94% de precisão. Aumente seu ROAS em até 45%.",
+  "name": "AdTracker - Rastreamento Server-Side",
+  "short_name": "AdTracker",
+  "description": "Rastreamento server-side que ignora adblockers e recupera até 40% dos dados perdidos em anúncios pagos",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#3B82F6",
+  "theme_color": "#2563eb",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "pt-BR",
-  "categories": ["business", "productivity", "marketing"],
+  "dir": "ltr",
+  "categories": ["business", "productivity", "analytics"],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -26,25 +27,28 @@
     {
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon-32x32.png",
       "sizes": "32x32",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon-16x16.png",
       "sizes": "16x16",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "shortcuts": [
     {
-      "name": "Dashboard",
-      "short_name": "Dashboard",
-      "description": "Acesse o dashboard principal",
-      "url": "/dashboard",
+      "name": "Teste Grátis",
+      "short_name": "Teste",
+      "description": "Iniciar teste gratuito de 7 dias",
+      "url": "/#cadastro",
       "icons": [
         {
           "src": "/favicon-32x32.png",
@@ -53,10 +57,22 @@
       ]
     },
     {
-      "name": "Relatórios",
-      "short_name": "Relatórios",
-      "description": "Visualize seus relatórios",
-      "url": "/reports",
+      "name": "Funcionalidades",
+      "short_name": "Features",
+      "description": "Ver funcionalidades do AdTracker",
+      "url": "/#funcionalidades",
+      "icons": [
+        {
+          "src": "/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    },
+    {
+      "name": "Preços",
+      "short_name": "Preços",
+      "description": "Ver planos e preços",
+      "url": "/#precos",
       "icons": [
         {
           "src": "/favicon-32x32.png",
@@ -71,14 +87,22 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Dashboard do Ad Tracker"
+      "label": "AdTracker Dashboard Desktop"
     },
     {
       "src": "/screenshot-mobile.png",
-      "sizes": "375x667",
+      "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Ad Tracker Mobile"
+      "label": "AdTracker Mobile"
     }
-  ]
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }

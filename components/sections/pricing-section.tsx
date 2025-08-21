@@ -1,165 +1,98 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, ArrowRight, Star } from "lucide-react"
-import { useGoogleAnalytics } from "@/components/analytics/google-analytics"
+import { Button } from "@/components/ui/button"
+import { CheckCircle } from "lucide-react"
+import Link from "next/link"
+import { PRICING_PLANS } from "@/lib/constants"
+import type { ThemeClasses } from "@/lib/theme"
 
 interface PricingSectionProps {
-  scrollToSection: (sectionId: string) => void
+  themeClasses: ThemeClasses
 }
 
-const plans = [
-  {
-    name: "Starter",
-    price: "29,90",
-    originalPrice: "59,90",
-    description: "Para quem quer recuperar conversões perdidas",
-    popular: false,
-    features: [
-      "Captura 94% das conversões (vs 65% tradicional)",
-      "Reduz CPA em até 35%",
-      "Aumenta ROAS em até 45%",
-      "Até 50.000 eventos/mês",
-      "Setup em 5 minutos",
-      "Suporte por email",
-      "Conformidade LGPD total",
-    ],
-    limitations: ["Relatórios básicos", "Eventos personalizados limitados"],
-  },
-  {
-    name: "Professional",
-    price: "39,90",
-    originalPrice: "79,90",
-    description: "Para quem quer dominar a concorrência",
-    popular: true,
-    features: [
-      "Captura 94% das conversões (vs 65% tradicional)",
-      "Reduz CPA em até 35%",
-      "Aumenta ROAS em até 45%",
-      "Eventos ILIMITADOS",
-      "Dashboard avançado com IA",
-      "Eventos personalizados ilimitados",
-      "Relatórios completos + exportação",
-      "Suporte prioritário (chat + email)",
-      "Setup em 5 minutos",
-      "Conformidade LGPD/GDPR",
-      "Alertas inteligentes",
-      "Análise de funil completa",
-    ],
-    limitations: [],
-  },
-]
-
-export default function PricingSection({ scrollToSection }: PricingSectionProps) {
-  const { trackButtonClick } = useGoogleAnalytics()
-
-  const handlePricingCTA = (planName: string, price: string) => {
-    trackButtonClick(`garantir_plano_${planName.toLowerCase()}`, "pricing")
-    scrollToSection("interest-form")
-  }
-
+export function PricingSection({ themeClasses }: PricingSectionProps) {
   return (
-    <section id="pricing" className="py-20 px-4 bg-white">
+    <section id="precos" className={`py-12 md:py-20 px-4 ${themeClasses.bgGradient}`}>
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Pare de Desperdiçar Seu Orçamento</h2>
-          <p className="text-xl text-gray-600 mb-8">Invista R$ 29,90 para economizar milhares todo mês</p>
-          <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm bg-blue-100 text-blue-800 border border-blue-200">
-            🔥 PROMOÇÃO LIMITADA - 50% OFF
-          </Badge>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 ${themeClasses.textPrimary}`}>
+            Planos que <span className="text-blue-600">se pagam</span>
+          </h2>
+          <p className={`text-lg md:text-xl ${themeClasses.textSecondary} px-4`}>
+            Comece grátis e veja o impacto imediato nos seus resultados.
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {plans.map((plan, index) => (
-            <div
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+          {PRICING_PLANS.map((plan, index) => (
+            <Card
               key={index}
-              className={`relative bg-gradient-to-br rounded-3xl p-8 shadow-lg transition-all duration-300 hover:shadow-xl ${plan.popular
-                  ? "from-blue-50 to-purple-50 border-2 border-blue-200 scale-105"
-                  : "from-gray-50 to-gray-100 border border-gray-200"
-                }`}
+              className={`${themeClasses.bgCard} ${plan.isRecommended ? "border-blue-600" : themeClasses.borderCard} relative`}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 flex items-center gap-2">
-                    <Star className="w-4 h-4" />
-                    Mais Escolhido
+              {plan.isRecommended && (
+                <div className="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-blue-600 text-white px-3 md:px-4 py-1 text-xs md:text-sm hover:bg-blue-700">
+                    {plan.badge}
                   </Badge>
                 </div>
               )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-gray-600 mb-4">{plan.description}</p>
-
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="text-lg text-gray-500 line-through">R$ {plan.originalPrice}</span>
-                  <span
-                    className={`text-5xl font-bold ${plan.popular
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                        : "text-gray-900"
-                      }`}
-                  >
-                    R$ {plan.price}
-                  </span>
-                  <span className="text-gray-600">/mês</span>
-                </div>
-
-                <div className="text-xs text-blue-600 mt-1">50% OFF - Promoção de Lançamento</div>
-              </div>
-
-              <div className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{feature}</span>
+              <CardHeader className="pb-4 md:pb-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className={`text-xl md:text-2xl ${themeClasses.textPrimary} mb-2`}>
+                      {plan.name}
+                    </CardTitle>
+                    <CardDescription className={`${themeClasses.textSecondary} text-sm md:text-base`}>
+                      {plan.description}
+                    </CardDescription>
                   </div>
-                ))}
-                {plan.limitations.map((limitation, limitationIndex) => (
-                  <div key={limitationIndex} className="flex items-start gap-3 opacity-60">
-                    <div className="w-5 h-5 flex-shrink-0 mt-0.5 flex items-center justify-center">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  {!plan.isRecommended && plan.name !== "Free" && (
+                    <div className="absolute -top-2 -right-2">
+                      <Badge className="bg-gray-200 text-gray-700 text-xs hover:bg-gray-400 hover:text-gray-800 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+                        {plan.badge}
+                      </Badge>
                     </div>
-                    <span className="text-sm text-gray-600">{limitation}</span>
-                  </div>
-                ))}
-              </div>
+                  )}
+                  {plan.name === "Free" && (
+                    <div className="absolute -top-2 -right-2">
+                      <Badge className="bg-red-500 text-white text-xs hover:bg-red-600">
+                        Vagas Limitadas
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-4 md:mt-6">
+                  <span className={`text-3xl md:text-4xl font-bold ${themeClasses.textPrimary}`}>R$ {plan.price}</span>
+                  <span className={`${themeClasses.textMuted} text-sm md:text-base`}>/mês</span>
+                </div>
+              </CardHeader>
 
-              <Button
-                size="lg"
-                className={`w-full text-lg py-4 shadow-lg transition-all duration-300 ${plan.popular
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    : "bg-gray-900 hover:bg-gray-800 text-white"
-                  }`}
-                onClick={() => handlePricingCTA(plan.name, plan.price)}
-              >
-                Garantir 50% de Desconto
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div>
+              <CardContent>
+                <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start">
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500 mr-2 md:mr-3 mt-0.5 flex-shrink-0" />
+                      <span className={`${themeClasses.textSecondary} text-sm md:text-base`}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-sm md:text-base py-2 md:py-3" asChild>
+                  <Link href="#cadastro">
+                    {plan.name === "Free" ? "Começar Grátis" : "Quero rastrear com precisão"}
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        {/* Social Proof */}
-        <div className="mt-16 text-center space-y-6">
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-gray-50 rounded-xl p-6">
-              <div className="text-2xl font-bold text-gray-900 mb-2">500+</div>
-              <div className="text-sm text-gray-600">Empresas já demonstraram interesse</div>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <div className="text-2xl font-bold text-green-600 mb-2">45%</div>
-              <div className="text-sm text-gray-600">Aumento médio no ROAS</div>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <div className="text-2xl font-bold text-blue-600 mb-2">35%</div>
-              <div className="text-sm text-gray-600">Redução média no CPA</div>
-            </div>
-          </div>
-
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            ✅ <strong>Sem compromisso</strong> • ✅ <strong>Cancele quando quiser</strong> • ✅{" "}
-            <strong>Setup gratuito</strong> • ✅ <strong>Suporte incluído</strong>
+        <div className="text-center mt-8 md:mt-12 px-4">
+          <p className={`${themeClasses.textMuted} mb-3 md:mb-4 text-sm md:text-base`}>
+            💳 Sem compromisso • ❌ Cancele quando quiser • 🔒 Dados seguros
+          </p>
+          <p className={`text-xs md:text-sm ${themeClasses.textMuted}`}>
+            Todos os planos incluem 7 dias de teste grátis. Não cobramos taxa de setup.
           </p>
         </div>
       </div>
