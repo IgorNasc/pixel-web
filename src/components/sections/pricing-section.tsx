@@ -27,16 +27,8 @@ export function PricingSection({ themeClasses }: PricingSectionProps) {
           {PRICING_PLANS.map((plan, index) => (
             <Card
               key={index}
-              className={`${themeClasses.bgCard} ${plan.isRecommended ? "border-blue-600" : themeClasses.borderCard} relative`}
+              className={`${themeClasses.bgCard} relative`}
             >
-              {plan.isRecommended && (
-                <div className="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-blue-600 text-white px-3 md:px-4 py-1 text-xs md:text-sm hover:bg-blue-700">
-                    {plan.badge}
-                  </Badge>
-                </div>
-              )}
-
               <CardHeader className="pb-4 md:pb-6">
                 <div className="flex justify-between items-start">
                   <div>
@@ -47,13 +39,6 @@ export function PricingSection({ themeClasses }: PricingSectionProps) {
                       {plan.description}
                     </CardDescription>
                   </div>
-                  {!plan.isRecommended && plan.name !== "Free" && (
-                    <div className="absolute -top-2 -right-2">
-                      <Badge className="bg-gray-200 text-gray-700 text-xs hover:bg-gray-400 hover:text-gray-800 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
-                        {plan.badge}
-                      </Badge>
-                    </div>
-                  )}
                   {plan.name === "Free" && (
                     <div className="absolute -top-2 -right-2">
                       <Badge className="bg-red-500 text-white text-xs hover:bg-red-600">
