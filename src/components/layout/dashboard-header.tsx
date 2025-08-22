@@ -42,6 +42,9 @@ export function DashboardHeader({ isDarkMode, onToggleTheme, themeClasses }: Das
           <Link href="/dashboard" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
             Home
           </Link>
+          <Link href="/dashboard/meta-keys" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
+            Chaves de API
+          </Link>
         </nav>
 
         {/* Right: theme + user */}
@@ -71,6 +74,9 @@ export function DashboardHeader({ isDarkMode, onToggleTheme, themeClasses }: Das
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>{user.name || user.email}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/profile">Editar perfil</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>Sair</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
