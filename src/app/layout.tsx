@@ -1,6 +1,7 @@
 import "./globals.css"
 import type { ReactNode } from "react"
 import Providers from "@/components/providers/session-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata = {
   title: "Next.js",
@@ -11,7 +12,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )

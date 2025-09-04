@@ -6,6 +6,7 @@ export const SITE_CONFIG = {
 } as const
 
 export const NAVIGATION_ITEMS = [
+  { href: "/dashboard/sites", label: "Sites" },
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#precos", label: "Preços" },
   { href: "#cadastro", label: "Cadastro" },

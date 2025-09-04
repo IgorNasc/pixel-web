@@ -42,6 +42,9 @@ export function DashboardHeader({ isDarkMode, onToggleTheme, themeClasses }: Das
           <Link href="/dashboard" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
             Home
           </Link>
+          <Link href="/dashboard/sites" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
+            Sites
+          </Link>
           <Link href="/dashboard/analytics" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
             Analytics
           </Link>
