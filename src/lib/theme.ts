@@ -18,9 +18,9 @@ export interface ThemeClasses {
 }
 
 export const getThemeClasses = (isDarkMode: boolean): ThemeClasses => ({
-  bgPrimary: isDarkMode ? "bg-gray-950" : "bg-white",
+  bgPrimary: isDarkMode ? "bg-gray-950" : "bg-stone-50",
   bgSecondary: isDarkMode ? "bg-gray-900" : "bg-gray-50",
-  bgGradient: isDarkMode ? "bg-gradient-to-b from-gray-950 to-gray-900" : "bg-gradient-to-b from-white to-gray-50",
+  bgGradient: isDarkMode ? "bg-gradient-to-b from-gray-950 to-gray-900" : "bg-gradient-to-b from-stone-50 to-white",
   bgCard: isDarkMode ? "bg-gray-800" : "bg-white",
   bgInput: isDarkMode ? "bg-gray-700" : "bg-white",
   textPrimary: isDarkMode ? "text-white" : "text-gray-900",

@@ -19,16 +19,12 @@ export function FiltersBar({
   value,
   onChange,
   sites,
-  pixels,
-  mockMode,
-  onToggleMockMode,
+  pixels
 }: {
   value: AnalyticsFilters
   onChange: (next: AnalyticsFilters) => void
   sites: Site[]
   pixels: Pixel[]
-  mockMode: boolean
-  onToggleMockMode: () => void
 }) {
   const rangeKey: RangeKey = useMemo(() => {
     const diff = Math.ceil((value.range.to.getTime() - value.range.from.getTime()) / (1000 * 60 * 60 * 24)) + 1
@@ -93,10 +89,6 @@ export function FiltersBar({
             <Switch checked={value.compare} onCheckedChange={(c) => onChange({ ...value, compare: c })} />
             <span className="text-sm text-muted-foreground">Compare</span>
           </div>
-          <Separator orientation="vertical" className="h-6" />
-          <Badge variant={mockMode ? "default" : "outline"} className="cursor-pointer" onClick={onToggleMockMode} aria-label="Toggle mock mode">
-            {mockMode ? "Mock data" : "API mode"}
-          </Badge>
         </div>
       </div>
 
@@ -121,24 +113,20 @@ export function FiltersBar({
           </SelectTrigger>
           <SelectContent>
             {pixels
-              .filter((p) => value.siteId === "all" || p.siteId === value.siteId || p.id === "all")
+              .filter((p) => value.siteId === "all" || p.siteId === value.siteId)
               .map((p) => (
-                <SelectItem key={p.id} value={p.id} aria-label={p.name}>
-                  {p.name}
+                <SelectItem key={p.id} value={p.id} aria-label={p.pixelId}>
+                  {p.pixelId} {p.label ? `• ${p.label}` : ""}
                 </SelectItem>
               ))}
           </SelectContent>
         </Select>
-        <Select value={value.funnelMode} onValueChange={(v) => onChange({ ...value, funnelMode: v as any })}>
-          <SelectTrigger className="w-full sm:w-[220px]" aria-label="Funnel mode">
-            <ServerIcon className="mr-2 h-4 w-4" />
-            <SelectValue placeholder="Funnel mode" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="pixel">Pixel-only</SelectItem>
-            <SelectItem value="final">Final (dedup)</SelectItem>
-          </SelectContent>
-        </Select>
+
+        <Separator orientation="vertical" className="hidden sm:block" />
+
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="gap-1"><ServerIcon className="h-3 w-3" /> Server-side</Badge>
+        </div>
       </div>
     </div>
   )

@@ -40,16 +40,16 @@ export function DashboardHeader({ isDarkMode, onToggleTheme, themeClasses }: Das
         {/* Minimal Navigation (center) */}
         <nav className="hidden md:flex items-center space-x-6">
           <Link href="/dashboard" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
-            Home
+            Dashboard
           </Link>
           <Link href="/dashboard/sites" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
             Sites
           </Link>
-          <Link href="/dashboard/analytics" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
-            Analytics
+          <Link href="/dashboard/webhooks" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
+            Webhooks
           </Link>
           <Link href="/dashboard/keys" className={`${themeClasses.textSecondary} hover:${themeClasses.textPrimary} transition-colors text-sm lg:text-base`}>
-            Chaves de API
+            Conexões
           </Link>
         </nav>
 

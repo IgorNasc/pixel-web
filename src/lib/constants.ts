@@ -7,6 +7,7 @@ export const SITE_CONFIG = {
 
 export const NAVIGATION_ITEMS = [
   { href: "/dashboard/sites", label: "Sites" },
+  { href: "/dashboard/webhooks", label: "Webhooks" },
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#precos", label: "Preços" },
   { href: "#cadastro", label: "Cadastro" },

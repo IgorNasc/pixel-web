@@ -59,3 +59,4 @@ export function EmqHeatmap({ data }: { data: EMQRow[] }) {
     </Card>
   )
 }
+

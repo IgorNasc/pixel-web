@@ -9,7 +9,7 @@ export const SecretInput = React.forwardRef<HTMLInputElement, SecretInputProps>(
   ({ className, type, ...props }, ref) => {
     const [show, setShow] = useState(false)
     return (
-      <div className="relative">
+      <div className="relative w-full">
         <Input ref={ref} type={show ? "text" : "password"} className={className} {...props} />
         <button
           type="button"
