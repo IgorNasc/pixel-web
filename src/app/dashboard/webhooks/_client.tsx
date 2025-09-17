@@ -115,8 +115,6 @@ export default function WebhooksClient() {
   if (!mounted) return null
 
   return (
-    <div className={`min-h-screen flex flex-col ${themeClasses.bgPrimary} ${themeClasses.textPrimary}`}>
-      <DashboardHeader isDarkMode={isDarkMode} onToggleTheme={toggleTheme} themeClasses={themeClasses} />
       <main id="main-content" className="container mx-auto px-4 py-8 md:py-12 flex-1">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div>
@@ -352,7 +350,5 @@ export default function WebhooksClient() {
           </AlertDialogContent>
         </AlertDialog>
       </main>
-      <Footer themeClasses={themeClasses} />
-    </div>
   )
 }

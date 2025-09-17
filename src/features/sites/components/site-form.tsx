@@ -12,7 +12,7 @@ type Props = {
   mode: "create" | "edit"
   site?: Site
   onOpenChange: (open: boolean) => void
-  onSubmit: (data: SiteInput) => Promise<void> | void
+  onSubmit: (input: SiteInput) => Promise<void>
 }
 
 const DEFAULTS: SiteInput = {
@@ -28,28 +28,35 @@ export function SiteForm({ open, mode, site, onOpenChange, onSubmit }: Props) {
   React.useEffect(() => {
     setValues(site ? { name: site.name, domain: site.domain } : DEFAULTS)
     setErrors({})
-  }, [site, open])
+  }, [site])
 
-  function validate(input: SiteInput) {
-    const next: { name?: string; domain?: string } = {}
-    if (!input.name.trim()) next.name = "Nome é obrigatório"
-    const hostLike = /^(?!-)[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/
-    if (!hostLike.test(input.domain.trim())) next.domain = "Informe um domínio válido (ex.: example.com)"
-    setErrors(next)
-    return Object.keys(next).length === 0
-  }
+  const hostLike = React.useMemo(() => /^(?!-)[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/, [])
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!validate(values)) return
-    try {
-      setSubmitting(true)
-      await onSubmit(values)
-      onOpenChange(false)
-    } finally {
-      setSubmitting(false)
-    }
-  }
+  const validate = React.useCallback(
+    (input: SiteInput) => {
+      const next: { name?: string; domain?: string } = {}
+      if (!input.name.trim()) next.name = "Nome é obrigatório"
+      if (!hostLike.test(input.domain.trim())) next.domain = "Informe um domínio válido (ex.: example.com)"
+      setErrors(next)
+      return Object.keys(next).length === 0
+    },
+    [hostLike]
+  )
+
+  const handleSubmit = React.useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault()
+      if (!validate(values)) return
+      try {
+        setSubmitting(true)
+        await onSubmit(values)
+        onOpenChange(false)
+      } finally {
+        setSubmitting(false)
+      }
+    },
+    [values, validate, onSubmit, onOpenChange]
+  )
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>

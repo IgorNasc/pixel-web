@@ -3,11 +3,18 @@ import { redirect } from "next/navigation"
 import { authOptions } from "@/lib/auth"
 import SitesClient from "./_client"
 
+export const metadata = {
+  title: "AdTracker - Sites",
+  description: "",
+}
+
 export default async function SitesPage() {
   const session = await getServerSession(authOptions)
+
   if (!session) {
     redirect(`/login?callbackUrl=/dashboard/sites`)
   }
+
   return <SitesClient />
 }
 

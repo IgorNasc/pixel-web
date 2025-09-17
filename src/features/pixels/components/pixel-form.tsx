@@ -48,7 +48,7 @@ export function PixelForm({ open, mode, value, siteHasActivePixel, onOpenChange,
       setForm({ pixelId: "", label: "", token: "", tokenConfirm: "", isDefault: !siteHasActivePixel })
       setErrors({})
     }
-  }, [value, open, siteHasActivePixel])
+  }, [value, siteHasActivePixel])
 
   const validPixelId = /^\d{10,16}$/.test(form.pixelId)
   const tokenRequired = form.token.trim().length > 0
@@ -90,7 +90,7 @@ export function PixelForm({ open, mode, value, siteHasActivePixel, onOpenChange,
       document.execCommand("copy")
       document.body.removeChild(ta)
       toast({ title: "Copiado", description: "Token copiado." })
-  }
+    }
   }
 
   return (
@@ -175,3 +175,4 @@ export function PixelForm({ open, mode, value, siteHasActivePixel, onOpenChange,
     </Sheet>
   )
 }
+

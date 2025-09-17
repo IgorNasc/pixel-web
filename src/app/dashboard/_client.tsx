@@ -1,10 +1,7 @@
 "use client"
 
-import { DashboardHeader } from "@/components/layout/dashboard-header"
-import { Footer } from "@/components/layout/footer"
 import { useTheme } from "@/hooks/use-theme"
 import {FiltersBar} from "@/features/analytics/FiltersBar";
-import {KpiCards} from "@/features/analytics/KpiCards";
 import {EmptyState} from "@/features/analytics/EmptyState";
 import {EventsOverTime} from "@/features/analytics/charts/EventsOverTime";
 import {ImpactByEvent} from "@/features/analytics/charts/ImpactByEvent";
@@ -61,8 +58,6 @@ export default function DashboardClient() {
     const noData = current.data.series.length === 0
 
   return (
-    <div className={`min-h-screen flex flex-col ${themeClasses.bgPrimary} ${themeClasses.textPrimary}`}>
-      <DashboardHeader isDarkMode={isDarkMode} onToggleTheme={toggleTheme} themeClasses={themeClasses} />
         <main id="main-content" className="container mx-auto px-4 py-8 md:py-12 flex-1">
             <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
@@ -107,7 +102,5 @@ export default function DashboardClient() {
                 <Diagnostics topPages={current.data.topPages} rejections={current.data.rejections} />
             </div>
         </main>
-      <Footer themeClasses={themeClasses} />
-    </div>
   )
 }

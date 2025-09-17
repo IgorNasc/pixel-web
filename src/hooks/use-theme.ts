@@ -7,7 +7,6 @@ export function useTheme() {
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [mounted, setMounted] = useState(false)
 
-  // Detectar preferência do sistema e localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("adtracker-theme")
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -43,6 +42,6 @@ export function useTheme() {
     isDarkMode,
     toggleTheme,
     themeClasses,
-    mounted, // Para evitar hydration mismatch
+    mounted
   }
 }
